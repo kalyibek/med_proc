@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<form action="{% url 'proc' %}" method="POST" enctype="multipart/form-data">
+  {% csrf_token %}
+  <!-- Text input -->
+  <div class="form-outline mb-4">
+    <input type="text" id="form6Example3" name="title" placeholder="title" class="form-control" />
+  </div>
+
+  <!-- Image input -->
+  <div class="form-outline mb-4">
+    <label for="images">Image</label>
+    <input type="file" class="form-control" id="images" name="stock_img" placeholder="" required>
+  </div>
+
+  <!-- Select -->
+  <div class="form-outline mb-4">
+    <label for="types">Type</label>
+    <select name="type" class="form-control" id="types">
+      <option value="heart">Сердце</option>
+      <option value="lungs">Легкие</option>
+      <option value="stomach">Желудок</option>
+      <option value="liver">Печень</option>
+      <option value="kidneys">Почки</option>
+    </select>
+  </div>
+
+  <!-- Submit button -->
+  <button type="submit" class="btn btn-success">Обработать</button>
+</form>
+{% endblock %}

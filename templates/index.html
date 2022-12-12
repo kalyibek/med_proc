@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block add_button %}
+<a href="{% url 'proc' %}" class="btn btn-success">Обработка</a><br><br>
+{% endblock %}
+{% block content %}
+{% for object in med_images %}
+<div class="card mb-3">
+  <h5 class="card-header">{{ object.title }}</h5>
+  <div class="card-body">
+     <label for="stock-img">Исходное</label>
+     <img width="400" class="card-img-left" id="stock-img" src="{{ object.stock_img.url }}">
+     <label for="proc-img">Обработанное</label>
+     <img width="400" class="card-img-right" id="proc-img" src="{{ object.proc_img.url }}">
+     <br>
+     <br>
+     <h5 class="card-text">Тип: {{ object.type }}</h5>
+     <a href="{% url 'delete' object.id %}" class="btn btn-danger">Удалить</a>
+  </div>
+  <div class="card-footer text-muted">
+     {{ object.posted_dt|date:"Y-m-d H:i:s" }}
+  </div>
+</div>
+{% endfor %}
+{% endblock %}
